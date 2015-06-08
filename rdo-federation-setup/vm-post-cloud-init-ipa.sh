@@ -21,14 +21,12 @@ yum install -y epel-release
 
 # Set up Copr repos for Ipsilon and it's dependencies
 wget -O /etc/yum.repos.d/ipsilon.repo \
-    https://copr.fedoraproject.org/coprs/nkinder/ipsilon/repo/epel-7/nkinder-ipsilon-epel-7.repo
-wget -O /etc/yum.repos.d/sssd.repo \
-    https://copr.fedoraproject.org/coprs/nkinder/sssd/repo/epel-7/nkinder-sssd-epel-7.repo
+    https://copr.fedoraproject.org/coprs/simo/ipsilon/repo/epel-7/simo-ipsilon-epel-7.repo
 
 # Install Ipsilon
 yum install -y ipsilon ipsilon-tools ipsilon-tools-ipa ipsilon-saml2 \
                ipsilon-authkrb ipsilon-authform ipsilon-infosssd
-ipsilon-server-install --ipa=yes --krb=yes --form=yes --info-sssd=yes \
+ipsilon-server-install --ipa=yes --krb=yes --form=yes \
                        --admin-user=admin
 
 # Ipsilon uses mod_ssl, but IPA uses mod_nss.  We need to switch
