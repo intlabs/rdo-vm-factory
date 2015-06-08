@@ -21,7 +21,7 @@ install_packages() {
     if [ "$OS_NAME" = "RHEL" ] ; then
         pkg=libguestfs-winsupport
         if ! rpm -q $pkg ; then
-            $SUDOCMD yum -y install $pkg
+            $SUDOCMD rpm -ivh https://people.redhat.com/~rjones/libguestfs-winsupport/7/7.1/x86_64/libguestfs-winsupport-7.1-4.el7.x86_64.rpm
         fi
 
         if ! rpm -q $pkg ; then
@@ -53,7 +53,7 @@ factory_setup() {
     # Determine our OS
     release=`cat /etc/redhat-release`
     case $release in
-        'Red Hat Enterprise Linux'*)
+        'CentOS'*)
             OS_NAME=RHEL
             ;;
         Fedora*)
